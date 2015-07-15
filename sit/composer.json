@@ -19,6 +19,17 @@
                     "type": "file"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.10.2",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.10.2.js",
+                    "type": "file"
+                }
+            }
         }
     ],
     "require": {
@@ -34,14 +45,15 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         
-        "braincrafted/bootstrap-bundle": "~2.1",
-        "twbs/bootstrap": "3.0.*",
+        "braincrafted/bootstrap-bundle": "dev-master",
         "jquery/jquery":  "1.11.*",
+        "jquery/jquery":  "1.10.*",
         "knplabs/knp-menu-bundle": "~2",
-        "knplabs/knp-paginator-bundle": "~2.4",
         "jordillonch/crud-generator": "dev-master",
         "pimple/pimple": "~3.0",
-        "friendsofsymfony/jsrouting-bundle": "^1.5"
+        "friendsofsymfony/jsrouting-bundle": "^1.5",
+        "twbs/bootstrap": "^3.3",
+        "knplabs/knp-paginator-bundle": "^2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
