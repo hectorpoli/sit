@@ -8,3 +8,4 @@ Desarrollado en Symfony.
 
 Para usar jordillonch para generar crud se debe ejecutar el siguiente comando:
 $ php app/console jordillonch:generate:crud --entity=DemoUserBundle:User --route-prefix=user --with-write --format=annotation --no-interaction
+(pagina de referencia http://level7systems.co.uk/en/symfony2-crud-generator-5-minutes/)
