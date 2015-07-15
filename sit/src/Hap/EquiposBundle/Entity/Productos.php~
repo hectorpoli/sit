@@ -27,6 +27,12 @@ class Productos
      * @ORM\Column(name="nombre_producto", type="string", length=100)
      */
     private $nombreProducto;
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Inventario", mappedBy="productos")
+     */
+    protected $inventario;
 
 
     /**

@@ -2,7 +2,12 @@ hap_equipos_homepage:
     path:     /hello/{name}
     defaults: { _controller: HapEquiposBundle:Default:index }
     
-_equipos:
+_productos:
     resource: "@HapEquiposBundle/Controller/ProductosController.php"
+    type:     annotation
+    prefix:   /
+    
+_inventario:
+    resource: "@HapEquiposBundle/Controller/InventarioController.php"
     type:     annotation
     prefix:   /
