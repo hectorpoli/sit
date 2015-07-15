@@ -1,0 +1,4 @@
+services:
+#    hap_equipos.example:
+#        class: Hap\EquiposBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,3 +1,7 @@
+hap_equipos:
+    resource: "@HapEquiposBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

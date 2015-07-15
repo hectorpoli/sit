@@ -1,0 +1,3 @@
+hap_equipos_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: HapEquiposBundle:Default:index }
