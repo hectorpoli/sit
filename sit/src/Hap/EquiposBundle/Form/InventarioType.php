@@ -14,9 +14,9 @@ class InventarioType extends AbstractType
     {
         $builder
             ->add('productos',null,array('label' => 'Tipo Producto: '))
+            ->add('marca',null,array('label' => 'Marca: '))
             ->add('modelo','text',array('label' => 'Modelo: '))
-            ->add('marca','text',array('label' => 'Marca: '))
-            ->add('color','text',array('label' => 'Color: '))
+            ->add('descripcion',null,array('label' => 'Descripción: '))
             ->add('serial','text',array('label' => 'Serial: '))
             ->add('numerobien','text',array('label' => 'Número de Bien: '))
         ;

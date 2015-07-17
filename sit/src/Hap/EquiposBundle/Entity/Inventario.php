@@ -31,18 +31,19 @@ class Inventario
     private $modelo;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="marca", type="string", length=50)
+     * @ORM\ManyToOne(targetEntity="Marca", inversedBy="inventario")
+     * @ORM\JoinColumn(name="marca_id", referencedColumnName="id")
+     * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
-    private $marca;
+    protected $marca;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=50)
+     * @ORM\Column(name="descripcion", type="text")
+     * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
-    private $color;
+    private $descripcion;
 
     /**
      * @var string
@@ -100,52 +101,7 @@ class Inventario
         return $this->modelo;
     }
 
-    /**
-     * Set marca
-     *
-     * @param string $marca
-     * @return Inventario
-     */
-    public function setMarca($marca)
-    {
-        $this->marca = $marca;
-
-        return $this;
-    }
-
-    /**
-     * Get marca
-     *
-     * @return string 
-     */
-    public function getMarca()
-    {
-        return $this->marca;
-    }
-
-    /**
-     * Set color
-     *
-     * @param string $color
-     * @return Inventario
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string 
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
+    
     /**
      * Set serial
      *
@@ -213,5 +169,51 @@ class Inventario
     public function getProductos()
     {
         return $this->productos;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return Inventario
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set marca
+     *
+     * @param \Hap\EquiposBundle\Entity\Marca $marca
+     * @return Inventario
+     */
+    public function setMarca(\Hap\EquiposBundle\Entity\Marca $marca = null)
+    {
+        $this->marca = $marca;
+
+        return $this;
+    }
+
+    /**
+     * Get marca
+     *
+     * @return \Hap\EquiposBundle\Entity\Marca 
+     */
+    public function getMarca()
+    {
+        return $this->marca;
     }
 }

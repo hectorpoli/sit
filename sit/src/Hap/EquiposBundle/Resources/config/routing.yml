@@ -7,6 +7,11 @@ _productos:
     type:     annotation
     prefix:   /
     
+_marca:
+    resource: "@HapEquiposBundle/Controller/MarcaController.php"
+    type:     annotation
+    prefix:   /
+    
 _inventario:
     resource: "@HapEquiposBundle/Controller/InventarioController.php"
     type:     annotation
