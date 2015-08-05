@@ -928,12 +928,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jordillonch/CrudGeneratorBundle.git",
-                "reference": "b67a067cd33e8fc3f779932a06ee8874d229b381"
+                "reference": "7c9efd149aae809353cf7c3520775e5edcadd3f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jordillonch/CrudGeneratorBundle/zipball/b67a067cd33e8fc3f779932a06ee8874d229b381",
-                "reference": "b67a067cd33e8fc3f779932a06ee8874d229b381",
+                "url": "https://api.github.com/repos/jordillonch/CrudGeneratorBundle/zipball/7c9efd149aae809353cf7c3520775e5edcadd3f7",
+                "reference": "7c9efd149aae809353cf7c3520775e5edcadd3f7",
                 "shasum": ""
             },
             "require": {
@@ -973,7 +973,7 @@
                 "crud",
                 "generator"
             ],
-            "time": "2015-07-01 08:53:23"
+            "time": "2015-07-21 14:42:10"
         },
         {
             "name": "jquery/jquery",
@@ -1309,17 +1309,17 @@
         },
         {
             "name": "lexik/form-filter-bundle",
-            "version": "v3.0.7",
+            "version": "v3.0.8",
             "target-dir": "Lexik/Bundle/FormFilterBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lexik/LexikFormFilterBundle.git",
-                "reference": "dc3fd6b79bdeb855f96488c75c0bae97a67efc52"
+                "reference": "73eacc444e6f3314a5a5209cda52a58355388b66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lexik/LexikFormFilterBundle/zipball/dc3fd6b79bdeb855f96488c75c0bae97a67efc52",
-                "reference": "dc3fd6b79bdeb855f96488c75c0bae97a67efc52",
+                "url": "https://api.github.com/repos/lexik/LexikFormFilterBundle/zipball/73eacc444e6f3314a5a5209cda52a58355388b66",
+                "reference": "73eacc444e6f3314a5a5209cda52a58355388b66",
                 "shasum": ""
             },
             "require": {
@@ -1365,7 +1365,7 @@
                 "filter",
                 "form"
             ],
-            "time": "2015-05-29 12:20:25"
+            "time": "2015-06-12 15:46:04"
         },
         {
             "name": "monolog/monolog",
@@ -1512,16 +1512,16 @@
         },
         {
             "name": "pimple/pimple",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "876bf0899d01feacd2a2e83f04641e51350099ef"
+                "reference": "3313af5935dbc560fab845b76a1ca351b47855af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/876bf0899d01feacd2a2e83f04641e51350099ef",
-                "reference": "876bf0899d01feacd2a2e83f04641e51350099ef",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/3313af5935dbc560fab845b76a1ca351b47855af",
+                "reference": "3313af5935dbc560fab845b76a1ca351b47855af",
                 "shasum": ""
             },
             "require": {
@@ -1554,7 +1554,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2014-07-24 09:48:15"
+            "time": "2015-07-30 09:57:46"
         },
         {
             "name": "psr/log",

@@ -66,6 +66,13 @@ class Inventario
      * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
     protected $productos;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Departamentos", inversedBy="inventario")
+     * @ORM\JoinColumn(name="departamentos_id", referencedColumnName="id")
+     * @Assert\NotBlank(message="Este campo no puede estar en blanco")
+     */
+    protected $departamento;
 
 
     /**
@@ -215,5 +222,28 @@ class Inventario
     public function getMarca()
     {
         return $this->marca;
+    }
+
+    /**
+     * Set departamento
+     *
+     * @param \Hap\EquiposBundle\Entity\Departamentos $departamento
+     * @return Inventario
+     */
+    public function setDepartamento(\Hap\EquiposBundle\Entity\Departamentos $departamento = null)
+    {
+        $this->departamento = $departamento;
+
+        return $this;
+    }
+
+    /**
+     * Get departamento
+     *
+     * @return \Hap\EquiposBundle\Entity\Departamentos 
+     */
+    public function getDepartamento()
+    {
+        return $this->departamento;
     }
 }
