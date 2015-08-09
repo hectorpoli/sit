@@ -16,3 +16,8 @@ _inventario:
     resource: "@HapEquiposBundle/Controller/InventarioController.php"
     type:     annotation
     prefix:   /
+    
+_departamentos:
+    resource: "@HapEquiposBundle/Controller/DepartamentosController.php"
+    type:     annotation
+    prefix:   /

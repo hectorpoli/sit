@@ -19,7 +19,11 @@ class InventarioType extends AbstractType
             ->add('descripcion',null,array('label' => 'Descripción: '))
             ->add('serial','text',array('label' => 'Serial: '))
             ->add('numerobien','text',array('label' => 'Número de Bien: '))
+<<<<<<< HEAD
             ->add('cantidad','text',array('label' => 'Cantidad: '))
+=======
+            ->add('departamento',null,array('label' => 'Ubicación fisica: '))
+>>>>>>> 221b68fe1bea992581c6e902f2c4d59dade04c76
         ;
     }
 
