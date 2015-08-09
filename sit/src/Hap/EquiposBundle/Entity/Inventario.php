@@ -66,6 +66,13 @@ class Inventario
      * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
     protected $productos;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cantidad", type="integer")
+     */
+    private $cantidad;
 
 
     /**
@@ -215,5 +222,28 @@ class Inventario
     public function getMarca()
     {
         return $this->marca;
+    }
+
+    /**
+     * Set cantidad
+     *
+     * @param integer $cantidad
+     * @return Inventario
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidad
+     *
+     * @return integer 
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
     }
 }
