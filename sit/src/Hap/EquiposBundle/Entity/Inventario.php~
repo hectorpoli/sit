@@ -68,11 +68,19 @@ class Inventario
     protected $productos;
     
     /**
+<<<<<<< HEAD
+     * @var integer
+     *
+     * @ORM\Column(name="cantidad", type="integer")
+     */
+    private $cantidad;
+=======
      * @ORM\ManyToOne(targetEntity="Departamentos", inversedBy="inventario")
      * @ORM\JoinColumn(name="departamentos_id", referencedColumnName="id")
      * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
     protected $departamento;
+>>>>>>> 221b68fe1bea992581c6e902f2c4d59dade04c76
 
 
     /**

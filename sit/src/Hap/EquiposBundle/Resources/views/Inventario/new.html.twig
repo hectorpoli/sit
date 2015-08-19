@@ -4,12 +4,45 @@
 {{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'Inventario'}, 'JordiLlonchCrudGeneratorBundle') }}
 {% endblock %}
 
+
+
 {% block page %}
 
 <h1>{{ 'views.new.creation'|trans({'%entity%': 'Inventario'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
 
 <form class="well" action="{{ path('inventario_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+    <div>
+        {{ form_label(form.productos) }}
+        {{ form_errors(form.productos) }}
+        {{ form_widget(form.productos) }}
+    </div>
+    <div>
+        {{ form_label(form.marca) }}
+        {{ form_errors(form.marca) }}
+        {{ form_widget(form.marca) }}
+    </div>
+    <div>
+        {{ form_label(form.modelo) }}
+        {{ form_errors(form.modelo) }}
+        {{ form_widget(form.modelo) }}
+    </div>
+    <div>
+        {{ form_label(form.descripcion) }}
+        {{ form_errors(form.descripcion) }}
+        {{ form_widget(form.descripcion) }}
+    </div>
+    <div>
+        {{ form_label(form.serial) }}
+        {{ form_errors(form.serial) }}
+        {{ form_widget(form.serial) }} <input id="chkserial" type="checkbox" value="No Aplica">No aplica
+    </div>
+    <div>
+        {{ form_label(form.numerobien) }}
+        {{ form_errors(form.numerobien) }}
+        {{ form_widget(form.numerobien) }} <input id="chkbien" type="checkbox" value="No Aplica">No aplica
+    </div>
+    
+    {{ form_rest(form) }}
     <p>
         <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
     </p>
@@ -22,4 +55,36 @@
         </a>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            
+            $("#chkserial").click(function() {
+                if($("#chkserial").is(':checked')){
+                    $("#hap_equiposbundle_inventario_serial").val("No aplica");
+                    $("#hap_equiposbundle_inventario_serial").prop('readonly',true);
+                }else{
+                    $("#hap_equiposbundle_inventario_serial").val("");
+                    $("#hap_equiposbundle_inventario_serial").prop('readonly',false);
+                }
+            });
+            $("#chkbien").click(function() {
+                if($("#chkbien").is(':checked')){
+                    $("#hap_equiposbundle_inventario_numerobien").val("No aplica");
+                    $("#hap_equiposbundle_inventario_numerobien").prop('readonly',true);
+                }else{
+                    $("#hap_equiposbundle_inventario_numerobien").val("");
+                    $("#hap_equiposbundle_inventario_numerobien").prop('readonly',false);
+                }
+            });
+            $("#hap_equiposbundle_inventario_cantidad").prop('readonly',true);
+            
+            
+            if($("#hap_equiposbundle_inventario_numerobien").is('[readonly]')){
+                $("#hap_equiposbundle_inventario_cantidad").prop('readonly',false);
+            }
+       });
+    </script>
 {% endblock %}
