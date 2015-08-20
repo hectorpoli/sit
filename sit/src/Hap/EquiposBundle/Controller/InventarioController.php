@@ -31,7 +31,7 @@ class InventarioController extends Controller
      */
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
+        list($filterForm, $queryBuilder) = $this->filter(1);
 
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
@@ -46,13 +46,24 @@ class InventarioController extends Controller
     * Create filter form and process filter request.
     *
     */
-    protected function filter()
+    protected function filter($t=0)
     {
         $request = $this->getRequest();
         $session = $request->getSession();
         $filterForm = $this->createForm(new InventarioFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('HapEquiposBundle:Inventario')->createQueryBuilder('e');
+        if($t==0){
+            $queryBuilder = $em->getRepository('HapEquiposBundle:Inventario')->createQueryBuilder('e');
+        }else if($t==1){
+            $queryBuilder = $em->createQuery(''
+                    . 'Select p.nombreProducto,m.nombreMarca'
+                    . ' From HapEquiposBundle:Inventario i'
+                    . ' Inner Join HapEquiposBundle:Productos p WITH p.id=i.productos'
+                    . ' Inner Join HapEquiposBundle:Marca m WITH m.id=i.marca'
+                    . ' Group By p.id,m.id');
+                    
+            
+        }
 
         // Reset filter
         if ($request->get('filter_action') == 'reset') {

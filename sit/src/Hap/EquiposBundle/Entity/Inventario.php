@@ -67,20 +67,15 @@ class Inventario
      */
     protected $productos;
     
+    
+    
     /**
-<<<<<<< HEAD
-     * @var integer
-     *
-     * @ORM\Column(name="cantidad", type="integer")
-     */
-    private $cantidad;
-=======
      * @ORM\ManyToOne(targetEntity="Departamentos", inversedBy="inventario")
      * @ORM\JoinColumn(name="departamentos_id", referencedColumnName="id")
      * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
     protected $departamento;
->>>>>>> 221b68fe1bea992581c6e902f2c4d59dade04c76
+
 
 
     /**
@@ -233,16 +228,6 @@ class Inventario
     }
 
     /**
-<<<<<<< HEAD
-     * Set cantidad
-     *
-     * @param integer $cantidad
-     * @return Inventario
-     */
-    public function setCantidad($cantidad)
-    {
-        $this->cantidad = $cantidad;
-=======
      * Set departamento
      *
      * @param \Hap\EquiposBundle\Entity\Departamentos $departamento
@@ -251,21 +236,10 @@ class Inventario
     public function setDepartamento(\Hap\EquiposBundle\Entity\Departamentos $departamento = null)
     {
         $this->departamento = $departamento;
->>>>>>> 221b68fe1bea992581c6e902f2c4d59dade04c76
-
         return $this;
     }
 
     /**
-<<<<<<< HEAD
-     * Get cantidad
-     *
-     * @return integer 
-     */
-    public function getCantidad()
-    {
-        return $this->cantidad;
-=======
      * Get departamento
      *
      * @return \Hap\EquiposBundle\Entity\Departamentos 
@@ -273,6 +247,5 @@ class Inventario
     public function getDepartamento()
     {
         return $this->departamento;
->>>>>>> 221b68fe1bea992581c6e902f2c4d59dade04c76
     }
 }
