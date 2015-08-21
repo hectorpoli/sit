@@ -1,7 +1,7 @@
 {% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
 
 {% block title %}
-{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Inventario'}, 'JordiLlonchCrudGeneratorBundle') }}
+{{ parent() }} - Detalle
 {% endblock %}
 
 {% block page %}
@@ -9,7 +9,7 @@
 <div class="row">
 
     <div class="span8">
-        <h1>{{ 'views.index.list'|trans({'%entity%': 'Inventario'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+        <h1>Detalle Inventario</h1>
     </div>
     <div class="span2">
         {% if form_errors(filterForm) %}
@@ -87,12 +87,19 @@
     <div class="span4">
     {{ pagerHtml|raw }}
     </div>
-
+    
+    <div>
         <div class="span8">
-    <a class="btn btn-primary likepaginator" href="{{ path('inventario_new') }}">
+            <a class="btn" href="{{ path('inventario') }}">
+                {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+            </a>
+        </div>
+        <div class="span8">
+            <a class="btn btn-primary likepaginator" href="{{ path('inventario_new') }}">
             {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} Inventario
-        </a>
+            </a>
+        </div>
     </div>
-    </div>
+</div>
 
 {% endblock %}

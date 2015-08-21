@@ -15,6 +15,10 @@ use Hap\EquiposBundle\Entity\Inventario;
 use Hap\EquiposBundle\Form\InventarioType;
 use Hap\EquiposBundle\Form\InventarioFilterType;
 
+use Doctrine\ORM\Query;
+use Pagerfanta\Adapter\ArrayAdapter;
+
+
 /**
  * Inventario controller.
  *
@@ -33,7 +37,27 @@ class InventarioController extends Controller
     {
         list($filterForm, $queryBuilder) = $this->filter(1);
 
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder,1);
+
+        return array(
+            'entities' => $entities,
+            'pagerHtml' => $pagerHtml,
+            'filterForm' => $filterForm->createView(),
+        );
+    }
+    
+    /**
+     * Lists all Inventario entities.
+     *
+     * @Route("/detalle/{id}", name="inventario_detalle")
+     * @Method("GET")
+     * @Template()
+     */
+    public function detalleAction($id)
+    {
+        list($filterForm, $queryBuilder) = $this->filter(0,$id);
+
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder,0);
 
         return array(
             'entities' => $entities,
@@ -46,24 +70,32 @@ class InventarioController extends Controller
     * Create filter form and process filter request.
     *
     */
-    protected function filter($t=0)
+    protected function filter($t=0,$id=0)
     {
         $request = $this->getRequest();
         $session = $request->getSession();
         $filterForm = $this->createForm(new InventarioFilterType());
         $em = $this->getDoctrine()->getManager();
         if($t==0){
-            $queryBuilder = $em->getRepository('HapEquiposBundle:Inventario')->createQueryBuilder('e');
+            $queryBuilder = $em->getRepository('HapEquiposBundle:Inventario')->createQueryBuilder('e')->where('e.marca='.$id);
         }else if($t==1){
-            $queryBuilder = $em->createQuery(''
-                    . 'Select p.nombreProducto,m.nombreMarca'
-                    . ' From HapEquiposBundle:Inventario i'
-                    . ' Inner Join HapEquiposBundle:Productos p WITH p.id=i.productos'
-                    . ' Inner Join HapEquiposBundle:Marca m WITH m.id=i.marca'
-                    . ' Group By p.id,m.id');
-                    
+            /*$queryBuilder = $em->getRepository('HapEquiposBundle:Inventario')->createQueryBuilder('e')
+                    ->select('e,count(e.id) as total')
+                    ->innerJoin('HapEquiposBundle:Productos','p','WITH','p.id=e.productos')
+                    ->groupBy('e.productos,e.marca');
+             */
+            
+            $sql="select p.nombreProducto,m.nombreMarca,m.id as marca_id,count(i.id) as total "
+                    . "from HapEquiposBundle:Inventario i "
+                    . "inner join HapEquiposBundle:Productos p WITH p.id=i.productos  "
+                    . "inner join HapEquiposBundle:Marca m WITH m.id=i.marca  "
+                    . "group by i.productos,i.marca";
+            $query = $em->createQuery($sql);
+            $queryBuilder = $query->getResult(Query::HYDRATE_ARRAY);
             
         }
+        
+        
 
         // Reset filter
         if ($request->get('filter_action') == 'reset') {
@@ -98,10 +130,13 @@ class InventarioController extends Controller
     * Get results from paginator and get paginator view.
     *
     */
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder,$t=0)
     {
         // Paginator
-        $adapter = new DoctrineORMAdapter($queryBuilder);
+        if($t==0)
+            $adapter = new DoctrineORMAdapter($queryBuilder);
+        else if($t==1)
+            $adapter = new ArrayAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(3);
         $currentPage = $this->getRequest()->get('page', 1);

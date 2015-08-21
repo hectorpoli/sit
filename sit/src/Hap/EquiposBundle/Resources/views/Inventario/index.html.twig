@@ -46,10 +46,13 @@
     {% for entity in entities %}
         <tr>
             
-            <td>{{ entity.productos }}</td>
-            <td>{{ entity.marca }}</td>
+            <td>{{ entity.nombreProducto }}</td>
+            <td>{{ entity.nombreMarca }}</td>
             <td>{{ entity.total }}</td>
             <td>
+                <a class="btn btn-mini" href="{{ path('inventario_detalle', { 'id': entity.marca_id }) }}">
+            Detalle
+                </a>
                     </td>
         </tr>
     {% endfor %}
