@@ -8,7 +8,9 @@
 
 {% block page %}
 
-<h1>{{ 'views.new.creation'|trans({'%entity%': 'Inventario'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+    <div class="titulo">
+        <h1>Nuevo Producto</h1>
+    </div>
 
 <form class="well" action="{{ path('inventario_create') }}" method="post" {{ form_enctype(form) }}>
     <div>

@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/08/2015, 01:49:35 AM
+    Author     : hpoli
+*/
+
+
+.titulo
+{
+    font-weight:normal;
+    font-style:italic;
+    color:#331DC2;
+    letter-spacing:4pt;
+    word-spacing:2pt;
+    font-size:41px;
+    text-align:left;
+    text-decoration: underline;
+    font-family:palatino linotype, palatino, serif;
+    line-height:1;
+    margin-bottom: 50px;
+}
