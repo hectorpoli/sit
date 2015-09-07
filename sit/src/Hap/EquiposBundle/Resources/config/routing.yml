@@ -21,3 +21,13 @@ _departamentos:
     resource: "@HapEquiposBundle/Controller/DepartamentosController.php"
     type:     annotation
     prefix:   /
+    
+_servicios:
+    resource: "@HapEquiposBundle/Controller/ServiciosController.php"
+    type:     annotation
+    prefix:   /
+    
+_servidores:
+    resource: "@HapEquiposBundle/Controller/ServidoresController.php"
+    type:     annotation
+    prefix:   /

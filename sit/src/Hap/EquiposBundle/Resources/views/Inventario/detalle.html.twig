@@ -55,18 +55,18 @@
     {{ pagerHtml|raw }}
     </div>
     
-    <div>
-        <div class="span8">
+    
+        <div class="float-left">
             <a class="btn" href="{{ path('inventario') }}">
                 {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
             </a>
         </div>
-        <div class="span8">
+        <div class="float-left">
             <a class="btn btn-primary likepaginator" href="{{ path('inventario_new') }}">
             {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} Inventario
             </a>
         </div>
-    </div>
+    
 </div>
 
 {% endblock %}
