@@ -36,11 +36,11 @@ class Servidores
     private $descripcion;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="SO", type="string", length=50)
+     * @ORM\ManyToMany(targetEntity="SO", inversedBy="servidores")
+     * @ORM\JoinColumn(name="so_id", referencedColumnName="id")
+     * 
      */
-    private $sO;
+    private $so;
 
     /**
      * @var string
@@ -134,29 +134,7 @@ class Servidores
         return $this->descripcion;
     }
 
-    /**
-     * Set sO
-     *
-     * @param string $sO
-     * @return Servidores
-     */
-    public function setSO($sO)
-    {
-        $this->sO = $sO;
-
-        return $this;
-    }
-
-    /**
-     * Get sO
-     *
-     * @return string 
-     */
-    public function getSO()
-    {
-        return $this->sO;
-    }
-
+    
     /**
      * Set virtualizacion
      *
@@ -274,5 +252,61 @@ class Servidores
     
     public function __construct() {
         $this->servicios = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add so
+     *
+     * @param \Hap\EquiposBundle\Entity\SO $so
+     * @return Servidores
+     */
+    public function addSo(\Hap\EquiposBundle\Entity\SO $so)
+    {
+        $this->so[] = $so;
+
+        return $this;
+    }
+
+    /**
+     * Remove so
+     *
+     * @param \Hap\EquiposBundle\Entity\SO $so
+     */
+    public function removeSo(\Hap\EquiposBundle\Entity\SO $so)
+    {
+        $this->so->removeElement($so);
+    }
+
+    /**
+     * Get so
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSo()
+    {
+        return $this->so;
+    }
+
+    /**
+     * Add servicios
+     *
+     * @param \Hap\EquiposBundle\Entity\Servicios $servicios
+     * @return Servidores
+     */
+    public function addServicio(\Hap\EquiposBundle\Entity\Servicios $servicios)
+    {
+        $this->servicios[] = $servicios;
+
+        return $this;
+    }
+
+    /**
+     * Remove servicios
+     *
+     * @param \Hap\EquiposBundle\Entity\Servicios $servicios
+     */
+    public function removeServicio(\Hap\EquiposBundle\Entity\Servicios $servicios)
+    {
+        $this->servicios->removeElement($servicios);
     }
 }

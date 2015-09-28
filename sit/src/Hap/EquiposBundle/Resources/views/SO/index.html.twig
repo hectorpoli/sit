@@ -1,7 +1,7 @@
 {% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
 
 {% block title %}
-{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Servidores'}, 'JordiLlonchCrudGeneratorBundle') }}
+{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'SO'}, 'JordiLlonchCrudGeneratorBundle') }}
 {% endblock %}
 
 {% block page %}
@@ -9,8 +9,10 @@
 <div class="row">
 
     <div class="span8">
-        <h1>{{ 'views.index.list'|trans({'%entity%': 'Servidores'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+        <h1>{{ 'views.index.list'|trans({'%entity%': 'SO'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
     </div>
+    
+
     
 
     <div class="span12">
@@ -19,22 +21,22 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>IP Servidor</th>
-            <th>SO</th>
+            <th>Nombre Sistema Operativo</th>
+            <th>Versión</th>
             <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('servidores_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.ip }}</td>
-            <td>{{ entity.so }}</td>
+            <td><a href="{{ path('so_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombreSo }}</td>
+            <td>{{ entity.version }}</td>
             <td>
-        <a class="btn btn-mini" href="{{ path('servidores_show', { 'id': entity.id }) }}">
+        <a class="btn btn-mini" href="{{ path('so_show', { 'id': entity.id }) }}">
             {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
-        <a class="btn btn-mini" href="{{ path('servidores_edit', { 'id': entity.id }) }}">
+        <a class="btn btn-mini" href="{{ path('so_edit', { 'id': entity.id }) }}">
             {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>            </td>
         </tr>
@@ -48,8 +50,8 @@
     </div>
 
         <div class="span8">
-    <a class="btn btn-primary likepaginator" href="{{ path('servidores_new') }}">
-            {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} Servidores
+    <a class="btn btn-primary likepaginator" href="{{ path('so_new') }}">
+            {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} SO
         </a>
     </div>
     </div>

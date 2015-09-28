@@ -36,16 +36,16 @@ class Servidores
     private $descripcion;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="SO", type="string", length=50)
+     * @ORM\ManyToMany(targetEntity="SO", inversedBy="servidores")
+     * @ORM\JoinColumn(name="so_id", referencedColumnName="id")
+     * 
      */
-    private $sO;
+    private $so;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="virtualizacion", type="smallint")
+     * @ORM\Column(name="virtualizacion", type="string", length=1)
      */
     private $virtualizacion;
 
@@ -71,7 +71,7 @@ class Servidores
     private $cpu;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Servicios", inversedBy="servidores")
+     * @ORM\ManyToMany(targetEntity="Servicios", inversedBy="servidores")
      * @ORM\JoinColumn(name="servicios_id", referencedColumnName="id")
      * 
      */
@@ -134,33 +134,11 @@ class Servidores
         return $this->descripcion;
     }
 
-    /**
-     * Set sO
-     *
-     * @param string $sO
-     * @return Servidores
-     */
-    public function setSO($sO)
-    {
-        $this->sO = $sO;
-
-        return $this;
-    }
-
-    /**
-     * Get sO
-     *
-     * @return string 
-     */
-    public function getSO()
-    {
-        return $this->sO;
-    }
-
+    
     /**
      * Set virtualizacion
      *
-     * @param integer $virtualizacion
+     * @param string $virtualizacion
      * @return Servidores
      */
     public function setVirtualizacion($virtualizacion)
@@ -173,7 +151,7 @@ class Servidores
     /**
      * Get virtualizacion
      *
-     * @return integer 
+     * @return string 
      */
     public function getVirtualizacion()
     {
@@ -247,5 +225,32 @@ class Servidores
     public function getCpu()
     {
         return $this->cpu;
+    }
+
+    /**
+     * Set servicios
+     *
+     * @param \Doctrine\Common\Collection\ArrayCollection $servicios
+     * @return Servidores
+     */
+    public function setServicios(\Doctrine\Common\Collection\ArrayCollection $servicios = null)
+    {
+        $this->servicios = $servicios;
+
+        return $this;
+    }
+
+    /**
+     * Get servicios
+     *
+     * @return \Doctrine\Common\Collection\ArrayCollection 
+     */
+    public function getServicios()
+    {
+        return $this->servicios;
+    }
+    
+    public function __construct() {
+        $this->servicios = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

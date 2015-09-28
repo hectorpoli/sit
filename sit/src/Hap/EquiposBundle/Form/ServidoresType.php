@@ -13,7 +13,7 @@ class ServidoresType extends AbstractType
         $builder
             ->add('ip',null,array('label' => 'Ip del Servidor'))
             ->add('descripcion',null,array('label' => 'Descripción'))
-            ->add('sO',null,array('label' => 'Sistema Operativo'))
+            ->add('so',null,array('label' => 'Sistema Operativo','multiple' => false))
             ->add('virtualizacion','choice', array('label' => 'Virtualizado, si o no?','choices'  => array('s' => 'Si', 'n' => 'No')))
             ->add('memoria',null,array('label' => 'Memoria'))
             ->add('disco',null,array('label' => 'Tamaño de Disco'))
