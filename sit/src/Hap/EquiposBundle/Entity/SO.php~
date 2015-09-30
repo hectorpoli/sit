@@ -36,7 +36,7 @@ class SO
     private $version;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Servidores", mappedBy="so")
+     * @ORM\OneToMany(targetEntity="Servidores", mappedBy="so")
      */
     protected $servidores;
     
@@ -44,59 +44,5 @@ class SO
         return $this->nombreSo . '-' . $this->version;
     }
 
-        /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set nombreSo
-     *
-     * @param string $nombreSo
-     * @return SO
-     */
-    public function setNombreSo($nombreSo)
-    {
-        $this->nombreSo = $nombreSo;
-
-        return $this;
-    }
-
-    /**
-     * Get nombreSo
-     *
-     * @return string 
-     */
-    public function getNombreSo()
-    {
-        return $this->nombreSo;
-    }
-
-    /**
-     * Set version
-     *
-     * @param string $version
-     * @return SO
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
-     * Get version
-     *
-     * @return string 
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
+    
 }

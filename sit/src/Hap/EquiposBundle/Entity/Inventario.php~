@@ -67,168 +67,25 @@ class Inventario
      */
     protected $productos;
     
+    
+    
     /**
-<<<<<<< HEAD
-     * @var integer
-     *
-     * @ORM\Column(name="cantidad", type="integer")
-     */
-    private $cantidad;
-=======
      * @ORM\ManyToOne(targetEntity="Departamentos", inversedBy="inventario")
      * @ORM\JoinColumn(name="departamentos_id", referencedColumnName="id")
      * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
     protected $departamento;
->>>>>>> 221b68fe1bea992581c6e902f2c4d59dade04c76
-
-
+    
+    
     /**
-     * Get id
-     *
-     * @return integer 
+     * @ORM\OneToMany(targetEntity="Servidores", mappedBy="inventario")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    protected $servidores;
 
-    /**
-     * Set modelo
-     *
-     * @param string $modelo
-     * @return Inventario
-     */
-    public function setModelo($modelo)
-    {
-        $this->modelo = $modelo;
-
-        return $this;
-    }
-
-    /**
-     * Get modelo
-     *
-     * @return string 
-     */
-    public function getModelo()
-    {
-        return $this->modelo;
+    
+    public function __toString() {
+        return 'Producto: ' . $this->productos . ',Marca: ' . $this->marca . ', Modelo: ' .$this->modelo . ', Serial: ' .$this->serial;
     }
 
     
-    /**
-     * Set serial
-     *
-     * @param string $serial
-     * @return Inventario
-     */
-    public function setSerial($serial)
-    {
-        $this->serial = $serial;
-
-        return $this;
-    }
-
-    /**
-     * Get serial
-     *
-     * @return string 
-     */
-    public function getSerial()
-    {
-        return $this->serial;
-    }
-
-    /**
-     * Set numerobien
-     *
-     * @param string $numerobien
-     * @return Inventario
-     */
-    public function setNumerobien($numerobien)
-    {
-        $this->numerobien = $numerobien;
-
-        return $this;
-    }
-
-    /**
-     * Get numerobien
-     *
-     * @return string 
-     */
-    public function getNumerobien()
-    {
-        return $this->numerobien;
-    }
-
-    /**
-     * Set productos
-     *
-     * @param \Hap\EquiposBundle\Entity\Productos $productos
-     * @return Inventario
-     */
-    public function setProductos(\Hap\EquiposBundle\Entity\Productos $productos = null)
-    {
-        $this->productos = $productos;
-
-        return $this;
-    }
-
-    /**
-     * Get productos
-     *
-     * @return \Hap\EquiposBundle\Entity\Productos 
-     */
-    public function getProductos()
-    {
-        return $this->productos;
-    }
-
-    /**
-     * Set descripcion
-     *
-     * @param string $descripcion
-     * @return Inventario
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get descripcion
-     *
-     * @return string 
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
-
-    /**
-     * Set marca
-     *
-     * @param \Hap\EquiposBundle\Entity\Marca $marca
-     * @return Inventario
-     */
-    public function setMarca(\Hap\EquiposBundle\Entity\Marca $marca = null)
-    {
-        $this->marca = $marca;
-
-        return $this;
-    }
-
-    /**
-     * Get marca
-     *
-     * @return \Hap\EquiposBundle\Entity\Marca 
-     */
-    public function getMarca()
-    {
-        return $this->marca;
-    }
 }

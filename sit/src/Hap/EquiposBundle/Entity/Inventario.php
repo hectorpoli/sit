@@ -75,8 +75,26 @@ class Inventario
      * @Assert\NotBlank(message="Este campo no puede estar en blanco")
      */
     protected $departamento;
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Servidores", mappedBy="inventario")
+     */
+    protected $servidores;
 
+    
+    public function __toString() {
+        return 'Producto: ' . $this->productos . ',Marca: ' . $this->marca . ', Modelo: ' .$this->modelo . ', Serial: ' .$this->serial;
+    }
 
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->servidores = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -111,7 +129,29 @@ class Inventario
         return $this->modelo;
     }
 
-    
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return Inventario
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
     /**
      * Set serial
      *
@@ -159,52 +199,6 @@ class Inventario
     }
 
     /**
-     * Set productos
-     *
-     * @param \Hap\EquiposBundle\Entity\Productos $productos
-     * @return Inventario
-     */
-    public function setProductos(\Hap\EquiposBundle\Entity\Productos $productos = null)
-    {
-        $this->productos = $productos;
-
-        return $this;
-    }
-
-    /**
-     * Get productos
-     *
-     * @return \Hap\EquiposBundle\Entity\Productos 
-     */
-    public function getProductos()
-    {
-        return $this->productos;
-    }
-
-    /**
-     * Set descripcion
-     *
-     * @param string $descripcion
-     * @return Inventario
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get descripcion
-     *
-     * @return string 
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
-
-    /**
      * Set marca
      *
      * @param \Hap\EquiposBundle\Entity\Marca $marca
@@ -228,6 +222,29 @@ class Inventario
     }
 
     /**
+     * Set productos
+     *
+     * @param \Hap\EquiposBundle\Entity\Productos $productos
+     * @return Inventario
+     */
+    public function setProductos(\Hap\EquiposBundle\Entity\Productos $productos = null)
+    {
+        $this->productos = $productos;
+
+        return $this;
+    }
+
+    /**
+     * Get productos
+     *
+     * @return \Hap\EquiposBundle\Entity\Productos 
+     */
+    public function getProductos()
+    {
+        return $this->productos;
+    }
+
+    /**
      * Set departamento
      *
      * @param \Hap\EquiposBundle\Entity\Departamentos $departamento
@@ -236,6 +253,7 @@ class Inventario
     public function setDepartamento(\Hap\EquiposBundle\Entity\Departamentos $departamento = null)
     {
         $this->departamento = $departamento;
+
         return $this;
     }
 
@@ -247,5 +265,38 @@ class Inventario
     public function getDepartamento()
     {
         return $this->departamento;
+    }
+
+    /**
+     * Add servidores
+     *
+     * @param \Hap\EquiposBundle\Entity\Servidores $servidores
+     * @return Inventario
+     */
+    public function addServidore(\Hap\EquiposBundle\Entity\Servidores $servidores)
+    {
+        $this->servidores[] = $servidores;
+
+        return $this;
+    }
+
+    /**
+     * Remove servidores
+     *
+     * @param \Hap\EquiposBundle\Entity\Servidores $servidores
+     */
+    public function removeServidore(\Hap\EquiposBundle\Entity\Servidores $servidores)
+    {
+        $this->servidores->removeElement($servidores);
+    }
+
+    /**
+     * Get servidores
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getServidores()
+    {
+        return $this->servidores;
     }
 }

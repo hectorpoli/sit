@@ -36,7 +36,7 @@ class SO
     private $version;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Servidores", mappedBy="so")
+     * @ORM\OneToMany(targetEntity="Servidores", mappedBy="so")
      */
     protected $servidores;
     
@@ -44,7 +44,16 @@ class SO
         return $this->nombreSo . '-' . $this->version;
     }
 
-        /**
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->servidores = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -99,13 +108,6 @@ class SO
     {
         return $this->version;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->servidores = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add servidores
@@ -113,7 +115,7 @@ class SO
      * @param \Hap\EquiposBundle\Entity\Servidores $servidores
      * @return SO
      */
-    public function addServidore(\Hap\EquiposBundle\Entity\Servidores $servidores)
+    public function addServidores(\Hap\EquiposBundle\Entity\Servidores $servidores)
     {
         $this->servidores[] = $servidores;
 
@@ -125,7 +127,7 @@ class SO
      *
      * @param \Hap\EquiposBundle\Entity\Servidores $servidores
      */
-    public function removeServidore(\Hap\EquiposBundle\Entity\Servidores $servidores)
+    public function removeServidores(\Hap\EquiposBundle\Entity\Servidores $servidores)
     {
         $this->servidores->removeElement($servidores);
     }

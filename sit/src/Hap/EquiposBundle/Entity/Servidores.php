@@ -36,7 +36,7 @@ class Servidores
     private $descripcion;
 
     /**
-     * @ORM\ManyToMany(targetEntity="SO", inversedBy="servidores")
+     * @ORM\ManyToOne(targetEntity="SO", inversedBy="servidores")
      * @ORM\JoinColumn(name="so_id", referencedColumnName="id")
      * 
      */
@@ -71,12 +71,23 @@ class Servidores
     private $cpu;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Servicios", inversedBy="servidores")
+     * @ORM\ManyToOne(targetEntity="Servicios", inversedBy="servidores")
      * @ORM\JoinColumn(name="servicios_id", referencedColumnName="id")
      * 
      */
     protected $servicios;
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Inventario", inversedBy="servidores")
+     * @ORM\JoinColumn(name="inventario_id", referencedColumnName="id")
+     * 
+     */
+    protected $inventario;
 
+
+    
+    
 
     /**
      * Get id
@@ -134,7 +145,6 @@ class Servidores
         return $this->descripcion;
     }
 
-    
     /**
      * Set virtualizacion
      *
@@ -227,13 +237,61 @@ class Servidores
         return $this->cpu;
     }
 
+   
+
+    /**
+     * Set inventario
+     *
+     * @param \Hap\EquiposBundle\Entity\Inventario $inventario
+     * @return Servidores
+     */
+    public function setInventario(\Hap\EquiposBundle\Entity\Inventario $inventario = null)
+    {
+        $this->inventario = $inventario;
+
+        return $this;
+    }
+
+    /**
+     * Get inventario
+     *
+     * @return \Hap\EquiposBundle\Entity\Inventario 
+     */
+    public function getInventario()
+    {
+        return $this->inventario;
+    }
+
+    /**
+     * Set so
+     *
+     * @param \Hap\EquiposBundle\Entity\SO $so
+     * @return Servidores
+     */
+    public function setSo(\Hap\EquiposBundle\Entity\SO $so = null)
+    {
+        $this->so = $so;
+
+        return $this;
+    }
+
+    /**
+     * Get so
+     *
+     * @return \Hap\EquiposBundle\Entity\SO 
+     */
+    public function getSo()
+    {
+        return $this->so;
+    }
+
     /**
      * Set servicios
      *
-     * @param \Doctrine\Common\Collection\ArrayCollection $servicios
+     * @param \Hap\EquiposBundle\Entity\Servicios $servicios
      * @return Servidores
      */
-    public function setServicios(\Doctrine\Common\Collection\ArrayCollection $servicios = null)
+    public function setServicios(\Hap\EquiposBundle\Entity\Servicios $servicios = null)
     {
         $this->servicios = $servicios;
 
@@ -243,70 +301,10 @@ class Servidores
     /**
      * Get servicios
      *
-     * @return \Doctrine\Common\Collection\ArrayCollection 
+     * @return \Hap\EquiposBundle\Entity\Servicios 
      */
     public function getServicios()
     {
         return $this->servicios;
-    }
-    
-    public function __construct() {
-        $this->servicios = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add so
-     *
-     * @param \Hap\EquiposBundle\Entity\SO $so
-     * @return Servidores
-     */
-    public function addSo(\Hap\EquiposBundle\Entity\SO $so)
-    {
-        $this->so[] = $so;
-
-        return $this;
-    }
-
-    /**
-     * Remove so
-     *
-     * @param \Hap\EquiposBundle\Entity\SO $so
-     */
-    public function removeSo(\Hap\EquiposBundle\Entity\SO $so)
-    {
-        $this->so->removeElement($so);
-    }
-
-    /**
-     * Get so
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSo()
-    {
-        return $this->so;
-    }
-
-    /**
-     * Add servicios
-     *
-     * @param \Hap\EquiposBundle\Entity\Servicios $servicios
-     * @return Servidores
-     */
-    public function addServicio(\Hap\EquiposBundle\Entity\Servicios $servicios)
-    {
-        $this->servicios[] = $servicios;
-
-        return $this;
-    }
-
-    /**
-     * Remove servicios
-     *
-     * @param \Hap\EquiposBundle\Entity\Servicios $servicios
-     */
-    public function removeServicio(\Hap\EquiposBundle\Entity\Servicios $servicios)
-    {
-        $this->servicios->removeElement($servicios);
     }
 }

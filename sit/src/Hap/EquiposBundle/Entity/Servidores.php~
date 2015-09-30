@@ -36,7 +36,7 @@ class Servidores
     private $descripcion;
 
     /**
-     * @ORM\ManyToMany(targetEntity="SO", inversedBy="servidores")
+     * @ORM\ManyToOne(targetEntity="SO", inversedBy="servidores")
      * @ORM\JoinColumn(name="so_id", referencedColumnName="id")
      * 
      */
@@ -71,12 +71,23 @@ class Servidores
     private $cpu;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Servicios", inversedBy="servidores")
+     * @ORM\ManyToOne(targetEntity="Servicios", inversedBy="servidores")
      * @ORM\JoinColumn(name="servicios_id", referencedColumnName="id")
      * 
      */
     protected $servicios;
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Inventario", inversedBy="servidores")
+     * @ORM\JoinColumn(name="inventario_id", referencedColumnName="id")
+     * 
+     */
+    protected $inventario;
 
+
+    
+    
 
     /**
      * Get id
@@ -134,7 +145,6 @@ class Servidores
         return $this->descripcion;
     }
 
-    
     /**
      * Set virtualizacion
      *
@@ -227,30 +237,51 @@ class Servidores
         return $this->cpu;
     }
 
+   
+
     /**
-     * Set servicios
+     * Set inventario
      *
-     * @param \Doctrine\Common\Collection\ArrayCollection $servicios
+     * @param \Hap\EquiposBundle\Entity\Inventario $inventario
      * @return Servidores
      */
-    public function setServicios(\Doctrine\Common\Collection\ArrayCollection $servicios = null)
+    public function setInventario(\Hap\EquiposBundle\Entity\Inventario $inventario = null)
     {
-        $this->servicios = $servicios;
+        $this->inventario = $inventario;
 
         return $this;
     }
 
     /**
-     * Get servicios
+     * Get inventario
      *
-     * @return \Doctrine\Common\Collection\ArrayCollection 
+     * @return \Hap\EquiposBundle\Entity\Inventario 
      */
-    public function getServicios()
+    public function getInventario()
     {
-        return $this->servicios;
+        return $this->inventario;
     }
-    
-    public function __construct() {
-        $this->servicios = new \Doctrine\Common\Collections\ArrayCollection();
+
+    /**
+     * Set so
+     *
+     * @param \Hap\EquiposBundle\Entity\SO $so
+     * @return Servidores
+     */
+    public function setSo(\Hap\EquiposBundle\Entity\SO $so = null)
+    {
+        $this->so = $so;
+
+        return $this;
+    }
+
+    /**
+     * Get so
+     *
+     * @return \Hap\EquiposBundle\Entity\SO 
+     */
+    public function getSo()
+    {
+        return $this->so;
     }
 }

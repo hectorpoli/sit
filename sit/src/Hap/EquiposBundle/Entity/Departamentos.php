@@ -29,7 +29,7 @@ class Departamentos
     private $nombre;
     
     /**
-     * @ORM\OneToMany(targetEntity="Inventario", mappedBy="marca")
+     * @ORM\OneToMany(targetEntity="Inventario", mappedBy="departamentos")
      */
     protected $inventario;
     

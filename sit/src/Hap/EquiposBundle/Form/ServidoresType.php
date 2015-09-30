@@ -19,6 +19,7 @@ class ServidoresType extends AbstractType
             ->add('disco',null,array('label' => 'Tamaño de Disco'))
             ->add('cpu',null,array('label' => 'Número de CPU'))
             ->add('servicios',null,array('label' => 'Tipo de Servicio: ','multiple' => true))
+            ->add('inventario',null,array('label' => 'Equipo Fisico','multiple' => false,'empty_value' => 'Seleccione'))
         ;
     }
 

@@ -29,7 +29,7 @@ class Servicios
     private $nombreServicio;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Servidores", mappedBy="servicios")
+     * @ORM\OneToMany(targetEntity="Servidores", mappedBy="servicios")
      */
     protected $servidores;
     
@@ -70,6 +70,7 @@ class Servicios
     {
         return $this->nombreServicio;
     }
+    
     /**
      * Constructor
      */
@@ -84,7 +85,7 @@ class Servicios
      * @param \Hap\EquiposBundle\Entity\Servidores $servidores
      * @return Servicios
      */
-    public function addServidore(\Hap\EquiposBundle\Entity\Servidores $servidores)
+    public function addServidores(\Hap\EquiposBundle\Entity\Servidores $servidores)
     {
         $this->servidores[] = $servidores;
 
@@ -96,7 +97,7 @@ class Servicios
      *
      * @param \Hap\EquiposBundle\Entity\Servidores $servidores
      */
-    public function removeServidore(\Hap\EquiposBundle\Entity\Servidores $servidores)
+    public function removeServidores(\Hap\EquiposBundle\Entity\Servidores $servidores)
     {
         $this->servidores->removeElement($servidores);
     }
