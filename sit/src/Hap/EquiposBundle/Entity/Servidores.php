@@ -71,7 +71,7 @@ class Servidores
     private $cpu;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Servicios", inversedBy="servidores")
+     * @ORM\ManyToMany(targetEntity="Servicios", inversedBy="servidores")
      * @ORM\JoinColumn(name="servicios_id", referencedColumnName="id")
      * 
      */
@@ -285,23 +285,42 @@ class Servidores
         return $this->so;
     }
 
+    
     /**
-     * Set servicios
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->servicios = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add servicios
      *
      * @param \Hap\EquiposBundle\Entity\Servicios $servicios
      * @return Servidores
      */
-    public function setServicios(\Hap\EquiposBundle\Entity\Servicios $servicios = null)
+    public function addServicio(\Hap\EquiposBundle\Entity\Servicios $servicios)
     {
-        $this->servicios = $servicios;
+        $this->servicios[] = $servicios;
 
         return $this;
     }
 
     /**
+     * Remove servicios
+     *
+     * @param \Hap\EquiposBundle\Entity\Servicios $servicios
+     */
+    public function removeServicio(\Hap\EquiposBundle\Entity\Servicios $servicios)
+    {
+        $this->servicios->removeElement($servicios);
+    }
+
+    /**
      * Get servicios
      *
-     * @return \Hap\EquiposBundle\Entity\Servicios 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getServicios()
     {

@@ -71,7 +71,7 @@ class Servidores
     private $cpu;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Servicios", inversedBy="servidores")
+     * @ORM\ManyToMany(targetEntity="Servicios", inversedBy="servidores")
      * @ORM\JoinColumn(name="servicios_id", referencedColumnName="id")
      * 
      */
@@ -284,4 +284,6 @@ class Servidores
     {
         return $this->so;
     }
+
+    
 }

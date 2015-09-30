@@ -29,7 +29,7 @@ class Servicios
     private $nombreServicio;
     
     /**
-     * @ORM\OneToMany(targetEntity="Servidores", mappedBy="servicios")
+     * @ORM\ManyToMany(targetEntity="Servidores", mappedBy="servicios")
      */
     protected $servidores;
     
@@ -70,5 +70,6 @@ class Servicios
     {
         return $this->nombreServicio;
     }
+    
     
 }
