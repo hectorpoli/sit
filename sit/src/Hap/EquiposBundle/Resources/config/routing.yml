@@ -36,3 +36,8 @@ _servidores:
     resource: "@HapEquiposBundle/Controller/ServidoresController.php"
     type:     annotation
     prefix:   /
+    
+_bitacoraCentroDatos:
+    resource: "@HapEquiposBundle/Controller/BitacoraCentroDatosController.php"
+    type:     annotation
+    prefix:   /

@@ -1,0 +1,38 @@
+{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+
+{% block estilos %}
+    {{ form_stylesheet(form) }}
+{% endblock %}
+
+
+{% block javascript %}
+    {{ form_javascript(form) }}
+{% endblock %}
+
+
+{% block title %}
+{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'BitacoraCentroDatos'}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+    <div class="titulo">
+        <h1>Cear Bitacora Centro de Datos</h1>
+    </div>
+
+
+<form class="well" action="{{ path('bitacoracentrodatos_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+    </p>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('bitacoracentrodatos') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+</div>
+{% endblock %}
