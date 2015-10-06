@@ -26,6 +26,9 @@ class AppKernel extends Kernel
             new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
             new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Hap\UsuarioBundle\HapUsuarioBundle(),
+            new FR3D\LdapBundle\FR3DLdapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
