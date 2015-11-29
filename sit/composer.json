@@ -53,7 +53,11 @@
         "pimple/pimple": "~3.0",
         "friendsofsymfony/jsrouting-bundle": "^1.5",
         "twbs/bootstrap": "^3.3",
-        "knplabs/knp-paginator-bundle": "^2.4"
+        "knplabs/knp-paginator-bundle": "^2.4",
+        "eternicode/bootstrap-datepicker": "^1.4",
+	"stephanecollot/datetimepicker-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "fr3d/ldap-bundle": "2.0.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

@@ -1,3 +1,8 @@
+hap_usuario:
+    resource: "@HapUsuarioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
 hap_equipos:
     resource: "@HapEquiposBundle/Resources/config/routing.yml"
     prefix:   /
@@ -5,3 +10,13 @@ hap_equipos:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
