@@ -44,6 +44,7 @@
 			<li><a href="{{ path('productos') }}">Tipos de Producto</a></li>
 			<li><a href="{{ path('marca') }}">Marcas</a></li>
 			<li><a href="{{ path('inventario') }}">Inventario</a></li>
+                        <li><a href="{{ path('prestamo') }}">Prestamo</a></li>
                     </ul>
 		</li>
                 <li><a href="#"><span class="iconic spin"></span> Servicios</a>
@@ -71,6 +72,13 @@
 			<li><a href="#">Dirección</a></li>
                     </ul>
 		</li>
+                <li><a href="{% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ path('fos_user_security_logout') }}{% else %}{{ path('fos_user_security_login') }}{% endif %}"><span class="iconic home"></span> 
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            Cerrar Sesión
+                        {% else %}
+                            Iniciar Sesión
+                        {% endif %}
+                    </a></li>
             </ul>
             <div class="clearfix"></div>
 	</nav>

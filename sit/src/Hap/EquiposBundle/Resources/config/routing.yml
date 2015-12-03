@@ -41,3 +41,8 @@ _bitacoraCentroDatos:
     resource: "@HapEquiposBundle/Controller/BitacoraCentroDatosController.php"
     type:     annotation
     prefix:   /
+    
+_prestamo:
+    resource: "@HapEquiposBundle/Controller/PrestamoController.php"
+    type:     annotation
+    prefix:   /

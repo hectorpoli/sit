@@ -12,9 +12,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  * User
  *
  * @ORM\Table(name="fos_user")
- * @ORM\Entity(repositoryClass="Hap\UsuarioBundle\Entity\UserRepository")
+ * @ORM\Entity
  */
-class User
+class User extends BaseUser implements LdapUserInterface
 {
     /**
      * @var integer
@@ -23,7 +23,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)

@@ -51,6 +51,7 @@
         <tr>
             <th>Id</th>
             <th>Tipo producto</th>
+            <th>¿Es prestamo?</th>
             <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
@@ -59,6 +60,11 @@
         <tr>
             <td><a href="{{ path('productos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.nombreProducto }}</td>
+            <td>{% if (entity.esPrestamo=='' or entity.esPrestamo=='0') %} 
+                    No
+                {% else %}
+                    Si
+                {% endif%}</td>
             <td>
         <a class="btn btn-mini" href="{{ path('productos_show', { 'id': entity.id }) }}">
             {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
