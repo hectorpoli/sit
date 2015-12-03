@@ -12,6 +12,7 @@ class ProductosType extends AbstractType
     {
         $builder
             ->add('nombreProducto','text',array('label' => 'Tipo Producto: '))
+            ->add('esPrestamo','checkbox',array('label' => '¿Es prestamo?'))
         ;
     }
 

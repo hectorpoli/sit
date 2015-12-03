@@ -32,9 +32,21 @@ class Productos
     
     
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="esPrestamo", type="boolean")
+     */
+    private $esPrestamo;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Inventario", mappedBy="productos")
      */
     protected $inventario;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Prestamo", mappedBy="equipoPrestamo")
+     */
+    protected $prestamo;
     
     public function __toString() {
         return $this->nombreProducto;
@@ -79,6 +91,7 @@ class Productos
     public function __construct()
     {
         $this->inventario = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->prestamo = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -112,5 +125,61 @@ class Productos
     public function getInventario()
     {
         return $this->inventario;
+    }
+
+    /**
+     * Set esPrestamo
+     *
+     * @param boolean $esPrestamo
+     * @return Productos
+     */
+    public function setEsPrestamo($esPrestamo)
+    {
+        $this->esPrestamo = $esPrestamo;
+
+        return $this;
+    }
+
+    /**
+     * Get esPrestamo
+     *
+     * @return boolean 
+     */
+    public function getEsPrestamo()
+    {
+        return $this->esPrestamo;
+    }
+
+    /**
+     * Add prestamo
+     *
+     * @param \Hap\EquiposBundle\Entity\Prestamo $prestamo
+     * @return Productos
+     */
+    public function addPrestamo(\Hap\EquiposBundle\Entity\Prestamo $prestamo)
+    {
+        $this->prestamo[] = $prestamo;
+
+        return $this;
+    }
+
+    /**
+     * Remove prestamo
+     *
+     * @param \Hap\EquiposBundle\Entity\Prestamo $prestamo
+     */
+    public function removePrestamo(\Hap\EquiposBundle\Entity\Prestamo $prestamo)
+    {
+        $this->prestamo->removeElement($prestamo);
+    }
+
+    /**
+     * Get prestamo
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrestamo()
+    {
+        return $this->prestamo;
     }
 }
