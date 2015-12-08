@@ -16,10 +16,49 @@
 
 {% block page %}
 
-<h1>{{ 'views.new.creation'|trans({'%entity%': 'Prestamo'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+    <div class="titulo">
+        <h1>Nueva Solicitud de Prestamo</h1>
+    </div>
 
 <form class="well" action="{{ path('prestamo_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+    <div>
+        {{ form_label(form.equipoPrestamo) }}
+        {{ form_errors(form.equipoPrestamo) }}
+        {{ form_widget(form.equipoPrestamo) }}
+    </div>
+    <div>
+        {{ form_label(form.cantidad) }}
+        {{ form_errors(form.cantidad) }}
+        {{ form_widget(form.cantidad) }}
+    </div>
+    <div>
+        {{ form_label(form.fechaPrestamo) }}
+        {{ form_errors(form.fechaPrestamo) }}
+        {{ form_widget(form.fechaPrestamo) }}
+    </div>
+    <div>
+        {{ form_label(form.fechaDevolucion) }}
+        {{ form_errors(form.fechaDevolucion) }}
+        {{ form_widget(form.fechaDevolucion) }}
+    </div>
+    <div>
+        {{ form_label(form.esInterno) }}
+        {{ form_errors(form.esInterno) }}
+        {{ form_widget(form.esInterno) }}
+    </div>
+    {% if is_granted('ROLE_SUPERADMIN') %}
+    <div>
+        {{ form_label(form.esAprobado) }}
+        {{ form_errors(form.esAprobado) }}
+        {{ form_widget(form.esAprobado) }}
+    </div>
+    <div>
+        {{ form_label(form.cantidadAprobada) }}
+        {{ form_errors(form.cantidadAprobada) }}
+        {{ form_widget(form.cantidadAprobada) }}
+    </div>
+    {% endif %}
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     <p>
         <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
     </p>
