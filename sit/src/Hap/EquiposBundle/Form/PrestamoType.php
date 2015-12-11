@@ -2,12 +2,22 @@
 
 namespace Hap\EquiposBundle\Form;
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+use Hap\EquiposBundle\Entity\Prestamo;
+use Symfony\Component\Form\FormInterface;
+
+
+
 
 class PrestamoType extends AbstractType
 {
+    
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -44,11 +54,48 @@ class PrestamoType extends AbstractType
                     'minView' => 2),
                 'label' => 'Fecha real de Devolución','attr' => array('style' => 'margin-top:10px;')))
             ->add('esInterno','checkbox',array('label' => '¿Es una actividad interna?'))
-            ->add('cantidad')
+            ->add('cantidad','choice')
             ->add('esAprobado','checkbox',array('label' => '¿Es aprobado el prestamo?'))
             ->add('cantidadAprobada')
             ->add('equipoPrestamo')
         ;
+        
+        $formModifier = function (FormInterface $form, Prestamo $equipo = null) {
+            $cantidad = null === $equipo ? array('0' => 'Seleccione una opción') : array('3' => '3');
+                
+                $form->add('cantidad', 'choice', array(
+                    //'class'       => 'HapEquiposBundle:Inventario',
+                    'placeholder' => '',
+                    'choices'     => $cantidad,
+                    'choices_as_values' => true,
+                ));
+        };
+        
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($formModifier) {
+                // this would be your entity, i.e. SportMeetup
+                $data = $event->getData();
+                $formModifier($event->getForm(), $data->getEquipoPrestamo());
+                
+            }
+        );
+        
+        
+        $builder->get('equipoPrestamo')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                // It's important here to fetch $event->getForm()->getData(), as
+                // $event->getData() will get you the client data (that is, the ID)
+                $equipo = $event->getForm()->getData();
+
+                // since we've added the listener to the child, we'll have to pass on
+                // the parent to the callback functions!
+                $formModifier($event->getForm()->getParent(), $equipo);
+            }
+        );
+        
+        
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
