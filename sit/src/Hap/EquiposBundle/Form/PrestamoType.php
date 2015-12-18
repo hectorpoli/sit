@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
-use Hap\EquiposBundle\Entity\Prestamo;
+use Hap\EquiposBundle\Entity\Productos;
 use Symfony\Component\Form\FormInterface;
 
 
@@ -54,20 +54,19 @@ class PrestamoType extends AbstractType
                     'minView' => 2),
                 'label' => 'Fecha real de Devolución','attr' => array('style' => 'margin-top:10px;')))
             ->add('esInterno','checkbox',array('label' => '¿Es una actividad interna?'))
-            ->add('cantidad','choice')
+            //->add('cantidad','choice')
             ->add('esAprobado','checkbox',array('label' => '¿Es aprobado el prestamo?'))
             ->add('cantidadAprobada')
-            ->add('equipoPrestamo')
+            ->add('equipoPrestamo','entity',array('class'=> 'HapEquiposBundle:Productos','placeholder' => 'Seleccione una opción'))
         ;
         
-        $formModifier = function (FormInterface $form, Prestamo $equipo = null) {
-            $cantidad = null === $equipo ? array('0' => 'Seleccione una opción') : array('3' => '3');
+        $formModifier = function (FormInterface $form, Productos $equipo = null) {
+            $cantidad = null === $equipo ? array() : array('3' => '3');
                 
-                $form->add('cantidad', 'choice', array(
-                    //'class'       => 'HapEquiposBundle:Inventario',
-                    'placeholder' => '',
+                $form->add('cantidad', 'entity', array(
+                    'class'       => 'HapEquiposBundle:Inventario',
+                    'placeholder' => 'Seleccione una opción',
                     'choices'     => $cantidad,
-                    'choices_as_values' => true,
                 ));
         };
         

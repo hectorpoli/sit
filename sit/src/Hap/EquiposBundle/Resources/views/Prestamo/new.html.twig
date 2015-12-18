@@ -77,7 +77,6 @@ $equipo.change(function() {
     data : data,
     success: function(html) {
       // Replace current position field ...
-      alert('hola');
       $('#hap_equiposbundle_prestamo_cantidad').replaceWith(
         // ... with the returned one from the AJAX response.
         $(html).find('#hap_equiposbundle_prestamo_cantidad')
