@@ -61,7 +61,7 @@ class PrestamoType extends AbstractType
         ;
         
         $formModifier = function (FormInterface $form, Productos $equipo = null) {
-            $cantidad = null === $equipo ? array() : array('3' => '3');
+            $cantidad = null === $equipo ? array() : $equipo->getInventario();
                 
                 $form->add('cantidad', 'entity', array(
                     'class'       => 'HapEquiposBundle:Inventario',
