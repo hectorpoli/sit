@@ -57,7 +57,8 @@
         "eternicode/bootstrap-datepicker": "^1.4",
 	"stephanecollot/datetimepicker-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "fr3d/ldap-bundle": "2.0.*@dev"
+        "fr3d/ldap-bundle": "2.0.*@dev",
+        "symfony/var-dumper": "^3.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

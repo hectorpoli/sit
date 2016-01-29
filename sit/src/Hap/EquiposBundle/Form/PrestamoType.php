@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormInterface;
 
 
 
+
 class PrestamoType extends AbstractType
 {
     
@@ -57,12 +58,22 @@ class PrestamoType extends AbstractType
             //->add('cantidad','choice')
             ->add('esAprobado','checkbox',array('label' => '¿Es aprobado el prestamo?'))
             ->add('cantidadAprobada')
-            ->add('equipoPrestamo','entity',array('class'=> 'HapEquiposBundle:Productos','placeholder' => 'Seleccione una opción'))
+            ->add('equipoPrestamo','entity',array(
+                'class'=> 'HapEquiposBundle:Productos',
+                'query_builder' => function (\Doctrine\ORM\EntityRepository $repository)
+                             {
+                                 return $repository->createQueryBuilder('s')
+                                        ->where('s.esPrestamo = 1');
+                             },
+                'placeholder' => 'Seleccione una opción'))
         ;
         
         $formModifier = function (FormInterface $form, Productos $equipo = null) {
             $cantidad = null === $equipo ? array() : $equipo->getInventario();
                 
+                if(count($cantidad)>0)
+                    $cantidad=array('1' => 'Uno');
+
                 $form->add('cantidad', 'entity', array(
                     'class'       => 'HapEquiposBundle:Inventario',
                     'placeholder' => 'Seleccione una opción',
