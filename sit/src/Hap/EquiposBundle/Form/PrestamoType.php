@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Hap\EquiposBundle\Entity\Productos;
 use Symfony\Component\Form\FormInterface;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 
@@ -71,14 +71,31 @@ class PrestamoType extends AbstractType
         $formModifier = function (FormInterface $form, Productos $equipo = null) {
             $cantidad = null === $equipo ? array() : $equipo->getInventario();
                 
-                if(count($cantidad)>0)
-                    $cantidad=array('1' => 'Uno');
+            $ii = null == $cantidad ? null : $equipo->getId() ;
+            
+            
+                
 
-                $form->add('cantidad', 'entity', array(
-                    'class'       => 'HapEquiposBundle:Inventario',
-                    'placeholder' => 'Seleccione una opción',
-                    'choices'     => $cantidad,
-                ));
+                if($ii==null){
+                    $form->add('cantidad', 'entity', array(
+                        'class'       => 'HapEquiposBundle:Inventario',
+                        'placeholder' => 'Seleccione una opción',
+                        'choices'     => $cantidad,
+                    ));
+                }else{
+                    $form->add('cantidad', 'entity', array(
+                        'class'=> 'HapEquiposBundle:Inventario',
+                        'query_builder' => function (\Doctrine\ORM\EntityRepository $repository) use ($ii)
+                                     {
+                                         return $repository->createQueryBuilder('s')
+                                                ->select('s')
+                                                ->where('s.productos = :i')
+                                                ->setParameter('i',$ii);
+                                     },
+                        'placeholder' => 'Seleccione una opción'
+                    ));
+                }
+                
         };
         
         $builder->addEventListener(
